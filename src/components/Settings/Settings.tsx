@@ -26,8 +26,6 @@ export const Settings:React.FC<SettingsType> = (props) => {
 
    const checkValue = !props.setting ? true : !(props.startValue >= 0 && props.maxValue > props.startValue)
 
-    console.log(checkValue)
-
     return (
         <div className={s.container} >
             <div className={s.settings} onFocus={onFocusHandler}>

@@ -45,7 +45,8 @@ function App() {
                 incScore={incScore}
                 resetScore={resetScore}
                 maxValue={maxValue}
-                setting={setting}/>
+                setting={setting}
+                startValue={startValue}/>
         </div>
     );
 }

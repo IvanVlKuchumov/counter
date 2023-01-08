@@ -1,9 +1,11 @@
 .scoreboard {
-    border: 1px solid red;
+    border: 5px solid #A36229;
     width: 500px;
     height: 150px;
-    margin: 30px auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
+    text-align: center;
 }
+

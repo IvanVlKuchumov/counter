@@ -9,13 +9,14 @@ type CounterType = {
     resetScore: () => void
     maxValue: number
     setting: boolean
+    startValue: number
 }
 
 
 export const Counter: React.FC<CounterType> = (props) => {
     const disabledInc = props.value === props.maxValue
     const disabledReset = props.value === 0
-    const message = 'enter values and press "set"'
+    const message = props.startValue >= 0 && props.maxValue > props.startValue ? 'enter values and press "set"' : 'Incorrect value!'
     if (!props.setting) {
         return (
             <div className={s.counter}>

@@ -1,4 +1,6 @@
 .App {
   display: flex;
   justify-content: center;
+  color: #A36229;
+  font-size: 40px;
 }

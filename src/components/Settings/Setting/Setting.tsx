@@ -16,7 +16,7 @@ export const Setting: React.FC<SettingPropsType> = (props) => {
         <div className={s.value}>
             <div>{props.name}</div>
             <div>
-                <input type={'number'} value={props.value} onChange={(event) => onChangeHandler(event)}/>
+                <input type={'number'} value={props.value} onChange={(event) => onChangeHandler(event)} className={s.input}/>
             </div>
         </div>
     );
