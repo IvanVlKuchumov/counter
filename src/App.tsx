@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Counter} from "./components/Counter/Counter";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [value, setValue] = useState(0)
+    const [maxValue, setMaxValue] = useState(5)
+
+    const incScore = () => {
+        setValue(value + 1)
+    }
+
+    const resetScore = () => {
+        setValue(0)
+    }
+
+    return (
+        <div>
+            <Counter value={value} incScore={incScore} resetScore={resetScore} maxValue={maxValue}/>
+        </div>
+    );
 }
 
 export default App;

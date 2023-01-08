@@ -1,0 +1,9 @@
+.scoreboard {
+    border: 1px solid red;
+    width: 400px;
+    height: 150px;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
