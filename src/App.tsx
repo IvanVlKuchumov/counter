@@ -1,23 +1,51 @@
 import React, {useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
+import {Settings} from "./components/Settings/Settings";
 
 function App() {
 
-    const [value, setValue] = useState(0)
+    const [startValue, setStartValue] = useState(0)
+    const [value, setValue] = useState(startValue)
     const [maxValue, setMaxValue] = useState(5)
+    const [setting, setSetting] = useState(false)
 
     const incScore = () => {
         setValue(value + 1)
     }
 
     const resetScore = () => {
-        setValue(0)
+        setValue(startValue)
+    }
+
+    const changeMaxValue = (value: number) => {
+        setMaxValue(value)
+    }
+
+    const changeMinValue = (value: number) => {
+        setStartValue(value)
+    }
+
+    const changeSettingStatus = (status: boolean) => {
+        setSetting(status)
     }
 
     return (
-        <div>
-            <Counter value={value} incScore={incScore} resetScore={resetScore} maxValue={maxValue}/>
+        <div className={'App'}>
+            <Settings
+                startValue={startValue}
+                maxValue={maxValue}
+                changeMaxValue={changeMaxValue}
+                changeMinValue={changeMinValue}
+                setting={setting}
+                changeSettingStatus={changeSettingStatus}
+                resetScore={resetScore}/>
+            <Counter
+                value={value}
+                incScore={incScore}
+                resetScore={resetScore}
+                maxValue={maxValue}
+                setting={setting}/>
         </div>
     );
 }

@@ -1,0 +1,27 @@
+.container {
+    border: 1px solid red;
+    width: 600px;
+    height: 400px;
+    margin: 200px auto;
+}
+
+.settings {
+    border: 1px solid red;
+    width: 500px;
+    height: 150px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.button {
+    border: 1px solid red;
+    width: 500px;
+    height: 150px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
