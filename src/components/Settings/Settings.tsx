@@ -18,10 +18,16 @@ export const Settings:React.FC<SettingsType> = (props) => {
    const onFocusHandler = () => {
        props.changeSettingStatus(true)
    }
+
    const onClickHandler = () => {
        props.changeSettingStatus(false)
        props.resetScore()
    }
+
+   const checkValue = !props.setting ? true : !(props.startValue >= 0 && props.maxValue > props.startValue)
+
+    console.log(checkValue)
+
     return (
         <div className={s.container} >
             <div className={s.settings} onFocus={onFocusHandler}>
@@ -29,7 +35,7 @@ export const Settings:React.FC<SettingsType> = (props) => {
                 <Setting name={'minValue:'} value={props.startValue} callBack={props.changeMinValue}/>
             </div>
             <div className={s.button}>
-                <Button name={'Set'} callBack={onClickHandler} disabled={!props.setting}/>
+                <Button name={'Set'} callBack={onClickHandler} disabled={checkValue}/>
             </div>
         </div>
     );
