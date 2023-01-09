@@ -30,6 +30,9 @@ function App() {
         setSetting(status)
     }
 
+    const checkSettings = startValue >= 0 && maxValue > startValue
+    const message = checkSettings ? 'enter values and press "set"' : 'Incorrect value!'
+
     return (
         <div className={'App'}>
             <Settings
@@ -46,7 +49,9 @@ function App() {
                 resetScore={resetScore}
                 maxValue={maxValue}
                 setting={setting}
-                startValue={startValue}/>
+                startValue={startValue}
+                message={message}
+            />
         </div>
     );
 }

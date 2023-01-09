@@ -10,17 +10,17 @@ type CounterType = {
     maxValue: number
     setting: boolean
     startValue: number
+    message:string
 }
 
 
 export const Counter: React.FC<CounterType> = (props) => {
     const disabledInc = props.value === props.maxValue
-    const disabledReset = props.value === 0
-    const message = props.startValue >= 0 && props.maxValue > props.startValue ? 'enter values and press "set"' : 'Incorrect value!'
+    const disabledReset = props.value === props.startValue
     if (!props.setting) {
         return (
             <div className={s.counter}>
-                <Scoreboard value={props.value}/>
+                <Scoreboard value={props.value} maxValue={props.maxValue}/>
                 <Buttons incScore={props.incScore} resetScore={props.resetScore} disabledInc={disabledInc}
                          disabledReset={disabledReset}/>
             </div>
@@ -28,7 +28,7 @@ export const Counter: React.FC<CounterType> = (props) => {
     } else {
         return (
             <div className={s.counter}>
-                <Scoreboard value={message}/>
+                <Scoreboard value={props.message}/>
                 <Buttons incScore={props.incScore} resetScore={props.resetScore} disabledInc={true}
                          disabledReset={true}/>
             </div>

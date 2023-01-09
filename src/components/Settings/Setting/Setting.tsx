@@ -12,11 +12,13 @@ export const Setting: React.FC<SettingPropsType> = (props) => {
         const newValue = e.currentTarget.value
         props.callBack(Number(newValue))
     }
+
+    const inputClass = `${s.input}`
     return (
         <div className={s.value}>
             <div>{props.name}</div>
             <div>
-                <input type={'number'} value={props.value} onChange={(event) => onChangeHandler(event)} className={s.input}/>
+                <input type={'number'} value={props.value} onChange={(event) => onChangeHandler(event)} className={inputClass}/>
             </div>
         </div>
     );
