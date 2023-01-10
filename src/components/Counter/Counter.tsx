@@ -10,7 +10,7 @@ type CounterType = {
     maxValue: number
     setting: boolean
     startValue: number
-    message:string
+    message: string
 }
 
 

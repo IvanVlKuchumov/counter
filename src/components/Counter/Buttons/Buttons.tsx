@@ -3,14 +3,14 @@ import s from './Buttons.module.css'
 import {Button} from "../../Button/Button";
 
 type ButtonsType = {
-    incScore:()=>void
-    resetScore:()=>void
-    disabledInc:boolean
-    disabledReset:boolean
+    incScore: () => void
+    resetScore: () => void
+    disabledInc: boolean
+    disabledReset: boolean
 }
 
 
-export const Buttons = (props:ButtonsType) => {
+export const Buttons = (props: ButtonsType) => {
     return (
         <div className={s.buttons}>
             <Button name={'inc'} callBack={props.incScore} disabled={props.disabledInc}/>

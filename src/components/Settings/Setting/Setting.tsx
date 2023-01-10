@@ -5,6 +5,7 @@ type SettingPropsType = {
     name: string
     value: number
     callBack: (value: number) => void
+    checkError: boolean
 }
 
 export const Setting: React.FC<SettingPropsType> = (props) => {
@@ -13,12 +14,13 @@ export const Setting: React.FC<SettingPropsType> = (props) => {
         props.callBack(Number(newValue))
     }
 
-    const inputClass = `${s.input}`
+    const inputClass = `${s.input} ${props.checkError ? s.inputError : ''}`
     return (
         <div className={s.value}>
             <div>{props.name}</div>
             <div>
-                <input type={'number'} value={props.value} onChange={(event) => onChangeHandler(event)} className={inputClass}/>
+                <input type={'number'} value={props.value} onChange={(event) => onChangeHandler(event)}
+                       className={inputClass}/>
             </div>
         </div>
     );

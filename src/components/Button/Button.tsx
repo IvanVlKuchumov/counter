@@ -9,7 +9,7 @@ type ButtonPropsType = {
 
 export const Button: React.FC<ButtonPropsType> = (props) => {
     const onClickHandler = () => {
-      props.callBack()
+        props.callBack()
     }
     const buttonClassName = props.disabled ? `${s.button} ${s.disabled}` : `${s.button}`
     return (
