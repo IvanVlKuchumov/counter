@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
@@ -9,9 +9,34 @@ function App() {
     const [value, setValue] = useState(startValue)
     const [maxValue, setMaxValue] = useState(5)
     const [setting, setSetting] = useState(false)
-
+    const [lineStart, setLineStart] = useState(false)
     const incScore = () => {
         setValue(value + 1)
+    }
+    const addSettingsValueAtLocalStorage = () => {
+        localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
+        localStorage.setItem('counterStartValue', JSON.stringify(startValue))
+    }
+    if (lineStart) {
+        useEffect(addSettingsValueAtLocalStorage, [startValue, maxValue])
+        setLineStart(true)
+    }
+
+    const getSettingsValue = () => {
+        const maxValueAsString = localStorage.getItem('counterMaxValue')
+        const startValueAsString = localStorage.getItem('counterStartValue')
+        if (maxValueAsString) {
+            const newMaxValue = JSON.parse(maxValueAsString)
+            setMaxValue(newMaxValue)
+        }
+        if (startValueAsString) {
+            const newStartValue = JSON.parse(startValueAsString)
+            setStartValue(newStartValue)
+        }
+    }
+    if (!lineStart) {
+        useEffect(getSettingsValue, [])
+        setLineStart(!lineStart)
     }
 
     const resetScore = () => {
