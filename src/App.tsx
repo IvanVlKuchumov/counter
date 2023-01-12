@@ -9,7 +9,6 @@ function App() {
     const [value, setValue] = useState(startValue)
     const [maxValue, setMaxValue] = useState(5)
     const [setting, setSetting] = useState(false)
-    const [lineStart, setLineStart] = useState(false)
     const incScore = () => {
         setValue(value + 1)
     }
@@ -17,10 +16,8 @@ function App() {
         localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
         localStorage.setItem('counterStartValue', JSON.stringify(startValue))
     }
-    if (lineStart) {
+
         useEffect(addSettingsValueAtLocalStorage, [startValue, maxValue])
-        setLineStart(true)
-    }
 
     const getSettingsValue = () => {
         const maxValueAsString = localStorage.getItem('counterMaxValue')
@@ -34,10 +31,9 @@ function App() {
             setStartValue(newStartValue)
         }
     }
-    if (!lineStart) {
+
         useEffect(getSettingsValue, [])
-        setLineStart(!lineStart)
-    }
+
 
     const resetScore = () => {
         setValue(startValue)
