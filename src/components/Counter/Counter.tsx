@@ -1,7 +1,7 @@
-import React from 'react';
 import s from './Counter.module.css'
-import {Buttons} from "./Buttons/Buttons";
+import {CounterRemote} from "./CounterRemote/CounterRemote";
 import {Scoreboard} from "./Scoreboard/Scooreboard";
+import {FC} from "react";
 
 type CounterType = {
     value: number
@@ -13,25 +13,39 @@ type CounterType = {
     message: string
 }
 
+export const Counter: FC<CounterType> = (props) => {
+    const {
+        value,
+        incScore,
+        resetScore,
+        maxValue,
+        setting,
+        startValue,
+        message,
+    } = props
 
-export const Counter: React.FC<CounterType> = (props) => {
-    const disabledInc = props.value === props.maxValue
-    const disabledReset = props.value === props.startValue
-    if (!props.setting) {
+    const isDisabledInc = value === maxValue
+    const isDisabledReset = value === startValue
+
+    if (!setting) {
         return (
             <div className={s.counter}>
-                <Scoreboard value={props.value} maxValue={props.maxValue}/>
-                <Buttons incScore={props.incScore} resetScore={props.resetScore} disabledInc={disabledInc}
-                         disabledReset={disabledReset}/>
-            </div>
-        )
-    } else {
-        return (
-            <div className={s.counter}>
-                <Scoreboard value={props.message}/>
-                <Buttons incScore={props.incScore} resetScore={props.resetScore} disabledInc={true}
-                         disabledReset={true}/>
+                <Scoreboard value={value} maxValue={maxValue}/>
+                <CounterRemote incScore={incScore} resetScore={resetScore} isDisabledInc={isDisabledInc}
+                               isDisabledReset={isDisabledReset}/>
             </div>
         )
     }
+
+    return (
+        <div className={s.counter}>
+            <Scoreboard value={message}/>
+            <CounterRemote
+                incScore={incScore}
+                resetScore={resetScore}
+                isDisabledInc={true}
+                isDisabledReset={true}
+            />
+        </div>
+    )
 };

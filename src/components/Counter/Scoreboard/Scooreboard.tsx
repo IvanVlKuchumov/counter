@@ -1,20 +1,20 @@
-import React from 'react';
 import s from "./Scoreboard.module.css";
+import {FC} from "react";
 
 type ScoreboardType = {
     value: number | string
     maxValue?: number
 }
 
-export const Scoreboard: React.FC<ScoreboardType> = (props) => {
+export const Scoreboard: FC<ScoreboardType> = ({value, maxValue}) => {
 
     const scoreboardClass = `${s.scoreboard} 
-    ${props.value === props.maxValue || props.value === 'Incorrect value!' ? s.scoreboardMax : ''} 
-    ${props.value === 'enter values and press "set"' ? s.scoreboardSettings : ''}`
+    ${(value === maxValue || value === 'Incorrect value!') ? s.scoreboardMax : ''} 
+    ${(value === 'enter values and press "set"') ? s.scoreboardSettings : ''}`
 
     return (
         <div className={scoreboardClass}>
-            {props.value}
+            {value}
         </div>
     );
 };

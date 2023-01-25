@@ -1,4 +1,4 @@
-import React from 'react';
+import {Dispatch, FC, SetStateAction} from 'react';
 import s from './Settings.module.css'
 import {Button} from "../Button/Button";
 import {Setting} from "./Setting/Setting";
@@ -6,14 +6,14 @@ import {Setting} from "./Setting/Setting";
 type SettingsType = {
     startValue: number
     maxValue: number
-    changeMaxValue: (value: number) => void
+    changeMaxValue: Dispatch<SetStateAction<number>>
     changeMinValue: (value: number) => void
     setting: boolean
     changeSettingStatus: (status: boolean) => void
     resetScore: () => void
 }
 
-export const Settings: React.FC<SettingsType> = (props) => {
+export const Settings: FC<SettingsType> = (props) => {
 
     const onFocusHandler = () => {
         props.changeSettingStatus(true)
@@ -38,7 +38,7 @@ export const Settings: React.FC<SettingsType> = (props) => {
                          checkError={minInputError}/>
             </div>
             <div className={s.button}>
-                <Button name={'Set'} callBack={onClickHandler} disabled={checkValue}/>
+                <Button name={'Set'} onClickHandler={onClickHandler} disabled={checkValue}/>
             </div>
         </div>
     );
