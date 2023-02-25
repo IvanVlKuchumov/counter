@@ -2,32 +2,40 @@ import s from './Counter.module.css'
 import {CounterRemote} from "./CounterRemote/CounterRemote";
 import {Scoreboard} from "./Scoreboard/Scooreboard";
 import {FC} from "react";
+import {useDispatch} from 'react-redux';
+import {incScoreAC, resetScoreAC} from '../../state/value-reducer';
 
 type CounterType = {
     value: number
-    incScore: () => void
-    resetScore: () => void
     maxValue: number
-    setting: boolean
+    isSetting: boolean
     startValue: number
     message: string
 }
 
 export const Counter: FC<CounterType> = (props) => {
+    console.log('render')
     const {
         value,
-        incScore,
-        resetScore,
         maxValue,
-        setting,
+        isSetting,
         startValue,
         message,
     } = props
 
-    const isDisabledInc = value === maxValue
-    const isDisabledReset = value === startValue
+    const dispatch = useDispatch()
 
-    if (!setting) {
+    const incScore = () => {
+        dispatch(incScoreAC())
+    }
+        const resetScore = () => {
+        dispatch(resetScoreAC())
+    }
+
+    const isDisabledInc = value === maxValue
+        const isDisabledReset = value === startValue
+
+    if (!isSetting) {
         return (
             <div className={s.counter}>
                 <Scoreboard value={value} maxValue={maxValue}/>

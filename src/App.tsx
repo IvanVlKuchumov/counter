@@ -1,58 +1,54 @@
-import {useEffect, useLayoutEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from './state/store';
 
 function App() {
 
-    const [startValue, setStartValue] = useState(0)
-    const [value, setValue] = useState(startValue)
-    const [maxValue, setMaxValue] = useState(5)
-    const [isSetting, setIsSetting] = useState(false)
 
-    const addSettingsValueAtLocalStorage = () => {
-        localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
-        localStorage.setItem('counterStartValue', JSON.stringify(startValue))
-    }
+    const value = useSelector<AppRootStateType, number>(state => state.counterValue.value)
+    const maxValue = useSelector<AppRootStateType, number>(state => state.counterValue.maxValue)
+    const startValue = useSelector<AppRootStateType, number>(state => state.counterValue.startValue)
+    const isSetting = useSelector<AppRootStateType, boolean>(state => state.settings.isSettingMode)
 
-    useEffect(addSettingsValueAtLocalStorage, [startValue, maxValue])
-
-    const getSettingsValue = () => {
-        const maxValueAsString = localStorage.getItem('counterMaxValue')
-        const startValueAsString = localStorage.getItem('counterStartValue')
-
-        if (maxValueAsString) {
-            const newMaxValue = +maxValueAsString
-            setMaxValue(newMaxValue)
-        }
-
-        if (startValueAsString) {
-            const newStartValue = +startValueAsString
-            setStartValue(newStartValue)
-        }
-    }
-
-    useLayoutEffect(getSettingsValue, [])
+    // const addSettingsValueAtLocalStorage = () => {
+    //     localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
+    //     localStorage.setItem('counterStartValue', JSON.stringify(startValue))
+    // }
+    //
+    // const getSettingsValue = () => {
+    //     const maxValueAsString = localStorage.getItem('counterMaxValue')
+    //     const startValueAsString = localStorage.getItem('counterStartValue')
+    //
+    //     if (maxValueAsString) {
+    //         const newMaxValue = +maxValueAsString
+    //         setMaxValue(newMaxValue)
+    //     }
+    //
+    //     if (startValueAsString) {
+    //         const newStartValue = +startValueAsString
+    //         setStartValue(newStartValue)
+    //     }
+    // }
+    //
+    // useLayoutEffect(getSettingsValue, [])
+    // useEffect(addSettingsValueAtLocalStorage, [startValue, maxValue])
 
     const checkSettings = startValue >= 0 && maxValue > startValue
-    const message = checkSettings ? 'enter values and press "set"' : 'Incorrect value!'
+    const message = checkSettings ? 'Enter values and press "Set"' : 'Incorrect value!'
 
     return (
         <div className={'App'}>
             <Settings
                 startValue={startValue}
                 maxValue={maxValue}
-                changeMaxValue={setMaxValue}
-                changeMinValue={(value: number) => {setStartValue(value)}}
                 setting={isSetting}
-                changeSettingStatus={(status: boolean) => {setIsSetting(status)}}
-                resetScore={() => {setValue(startValue)}}/>
+            />
             <Counter
                 value={value}
-                incScore={() => setValue(value + 1)}
-                resetScore={() => {setValue(startValue)}}
                 maxValue={maxValue}
-                setting={isSetting}
+                isSetting={isSetting}
                 startValue={startValue}
                 message={message}
             />
