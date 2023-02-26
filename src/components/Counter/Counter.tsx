@@ -1,7 +1,7 @@
 import s from './Counter.module.css'
 import {CounterRemote} from "./CounterRemote/CounterRemote";
 import {Scoreboard} from "./Scoreboard/Scooreboard";
-import {FC} from "react";
+import {FC, memo} from "react";
 import {useDispatch} from 'react-redux';
 import {incScoreAC, resetScoreAC} from '../../state/value-reducer';
 
@@ -13,7 +13,7 @@ type CounterType = {
     message: string
 }
 
-export const Counter: FC<CounterType> = (props) => {
+export const Counter: FC<CounterType> = memo( (props) => {
     console.log('render')
     const {
         value,
@@ -56,4 +56,4 @@ export const Counter: FC<CounterType> = (props) => {
             />
         </div>
     )
-};
+});
